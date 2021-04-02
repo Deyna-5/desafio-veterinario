@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @client.name %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @client.phone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @client.email %>
+</p>
+
+<h3>Mascotas de este cliente</h3>
+
+<table>
+  <thead>
+    <th>Nombre</th>
+    <th>Altura maxima</th>
+    <th>Peso maximo</th>
+  </thead>
+  <tbody>
+    <% @client.pets.each do |pet| %>
+    <tr>
+      <td> <%= pet.name %> </td>
+      <td> <%= pet.pet_histories.pluck(:height).max %>  </td>
+      <td> <%= pet.pet_histories.pluck(:weight).max  %>  </td>
+    </tr>
+  <%end%>
+  </tbody>
+</table>
+
+<%= link_to "Ver mascotas", client_pets_path(@client)%>
+
+<%= link_to 'Edit', edit_client_path(@client) %> |
+<%= link_to 'Back', clients_path %>

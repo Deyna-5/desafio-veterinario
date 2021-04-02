@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pet.name %>
+</p>
+
+<p>
+  <strong>Race:</strong>
+  <%= @pet.race %>
+</p>
+
+<p>
+  <strong>Birthday:</strong>
+  <%= @pet.birthday %>
+</p>
+
+<p>
+  <strong>Visitas al veterinario:</strong>
+  <%= @pet.pet_histories.count %>
+</p>
+
+<h3>Informacion sobre esta mascota</h3>
+
+<div>
+  <% @pet.pet_histories.each do |pet_historie| %>
+    <%= pet_historie.weight %>
+    <%= pet_historie.height %>
+    <%= pet_historie.description %>
+  <%end%>
+</div>
+
+  <div>
+  <table>
+    <thead>
+      <th>Promedio de Altura</th>
+      <th>Promedio de Peso</th>
+      <th> Altura máxima</th>
+      <th> Peso máximo </th>
+    </thead>
+    <tbody>
+      <tr>
+        <td> <%= @pet.pet_histories.average(:height) %>  </td>
+        <td> <%= @pet.pet_histories.average(:weight) %>  </td>
+        <td> <%= @pet.pet_histories.pluck(:height).max %>  </td>
+        <td> <%= @pet.pet_histories.pluck(:weight).max  %>  </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<%= link_to 'Back', client_pets_path %>
